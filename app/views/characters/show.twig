@@ -1,0 +1,41 @@
+{% extends "layouts/base.twig" %}
+
+{% block content %}
+    <div style="max-width: 800px;">
+        <h2>{{ character.name }}</h2>
+
+        <div style="background: #2d2d2d; padding: 30px; border-radius: 8px; border: 2px solid #d4af37; margin-top: 20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3 style="color: #d4af37; margin-bottom: 10px;">Allgemein</h3>
+                    <p><strong>Name:</strong> {{ character.char_name }}</p>
+                    <p><strong>Geschlecht:</strong> {{ character.char_geschlecht }}</p>
+                    <p><strong>Alter:</strong> {{ character.char_alter }}</p>
+                    <p><strong>Größe:</strong> {{ character.char_groesse }}</p>
+                    <p><strong>Statur:</strong> {{ character.char_statur }}</p>
+                    <p><strong>Haare:</strong> {{ character.char_haare }}</p>
+                    <p><strong>Augen:</strong> {{ character.char_augen }}</p>
+                    <p><strong>Besondere Merkmale:</strong> {{ character.char_besondere_merkmale }}</p>
+                    <p><strong>Verdiente Erfahrungspunkte:</strong> {{ character.char_verdiente_ep }}</p>
+                    <p><strong>Credits:</strong> {{ character.char_credits }}</p>
+                </div>
+
+                <div>
+                    <h3>Talente</h3>
+                    {% for talent in talents %}
+                        <h1>{{ talent.Status|raw }}</h1>
+                        <h2>{{ talent.Talentname|raw }}</h2>
+                        {{ talent.Beschreibung|raw }}
+                        <br><br>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <h3 style="color: #d4af37; margin-bottom: 10px;">Aktionen</h3>
+                    <a href="{{ base_url }}characters/{{ character.id }}/edit" style="display: inline-block; background: #d4af37; color: #1a1a1a; padding: 10px 20px; text-decoration: none; border-radius: 4px; margin-right: 10px;">Bearbeiten</a>
+                    <a href="{{ base_url }}characters" style="display: inline-block; background: #555; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Zurück</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

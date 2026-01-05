@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title|default('DSA Charaktermanager') }}</title>
+    <link rel="stylesheet" href="http://217.154.77.206/public/css/base.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #d4af37;
+        }
+        header h1 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        nav { text-align: center; margin-top: 15px; }
+        nav a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 15px;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .alert-success { background: #2d5016; border-left: 4px solid #4caf50; }
+        .alert-error { background: #5c1a1a; border-left: 4px solid #f44336; }
+        .dice { color: #d4af37; font-weight: bold; }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>⚔️ {{ title|default('DSA Charaktermanager') }}</h1>
+        <nav>
+            <a href="{{ base_url }}characters">Charaktere</a>
+            <a href="{{ base_url }}characters/create">Neuer Charakter</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "layouts/base.twig" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+
+    {% if characters is empty %}
+        <p style="margin-top: 20px;">Noch keine Charaktere erstellt. <a href="{{ base_url }}characters/create" style="color: #d4af37;">Erstelle deinen ersten Charakter!</a></p>
+    {% else %}
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+            {% for char in characters %}
+                <div style="background: #2d2d2d; padding: 20px; border-radius: 8px; border: 2px solid #d4af37; transition: transform 0.2s;">
+                    <h3 style="color: #d4af37; margin-bottom: 10px;">{{ char.char_name }}</h3>
+                    <p><strong>Rasse:</strong> {{ char.race }}</p>
+                    <p><strong>Profession:</strong> {{ char.profession }}</p>
+                    <p><strong>AP:</strong> {{ char.experience|ap_format }}</p>
+                    <div style="margin-top: 15px; border-top: 1px solid #444; padding-top: 15px;">
+                        <a href="{{ base_url }}characters/{{ char.id }}" style="color: #d4af37; text-decoration: none;">Anzeigen</a> |
+                        <a href="{{ base_url }}characters/{{ char.id }}/edit" style="color: #d4af37; text-decoration: none;">Bearbeiten</a> |
+                        <form method="POST" action="{{ base_url }}characters/{{ char.id }}/delete" style="display: inline;">
+                            <button type="submit" onclick="return confirm('Wirklich löschen?')" style="background: none; border: none; color: #ff6b6b; cursor: pointer; text-decoration: underline;">Löschen</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
